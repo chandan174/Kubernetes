@@ -40,6 +40,6 @@ Now before proceeding lets understand what is container, docker and how it diffe
     - __scheduler__: once apiserver will send the signal scheduler will make sure to create that POD in the respective node. scheduler is responsible for scheduling the resource in kubernetes.
     - __etcd__: it contains the entire cluster information in key value store. it is used to create backup of the cluster.
     - __controller manager__: kubernetes support autoscalling, to support that kubernetes has controller like replicaset. so if user request 2 instance of the POD replicaset controller will make sure that it will bring 2 POD UP.
-    - So to summarise controller manager make sure that controller like replicaset are always UP.
+      - So to summarise controller manager make sure that controller like replicaset are always UP.
     - __cloud controller manager (CCM)__: when kubernetes is running on cloud platform (EKS/AKS), so when user request to create a resource such as LB/storage service on cloud platform than kubernetes has to provide the input from user to cloud provider understandable format. 
-    - Kubernetes provides CCM which is an open source utility where cloud providers which want to run kubernetes will write its logic. 
+      - Kubernetes provides CCM which is an open source utility where cloud providers which want to run kubernetes will write its logic. 
