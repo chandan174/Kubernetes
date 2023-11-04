@@ -1,6 +1,7 @@
-**Kubernetes**
-<h1> Introduction <h1>
----
+<h1> **Kubernetes** </h1>
+
+<h3> _Introduction_ </h3>
+
 Kubernetes is usually defined as a container orchestration platform.
 
 Now before proceeding lets understand what is container, docker and how it differs from kubernetes.
