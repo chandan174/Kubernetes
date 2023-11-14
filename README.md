@@ -16,8 +16,8 @@ Now before proceeding lets understand what is container, docker and how it diffe
   
 ***Differnce between Docker and Kubernetes***
 
-- The basic unit in Docker is container, i.e. once the docker file is built an image is created. using that image we can run a container (which is nothing but the instance of software which user wants to run).
-- The basic unit of Kubernetes is POD. POD is just a wrapper around containers. 
+- The lowest level of deployment in Docker is container, i.e. once the docker file is built an image is created. using that image we can run a container (which is nothing but the instance of software which user wants to run).
+- The lowest level of deployment in Kubernetes is POD. POD is just a wrapper around containers. 
 - Generally kubernetes is used in PROD  env and not Docker because of the following reasons.
   - __Host__: Docker runs on single host, so if there is any issue identified in that host the applciation will be affected. While Kubernetes runs on a cluster (which consists of 1 or more master and worker node).
   - __AutoScaling__: Kubernetes provides some advance features by which user can spin up new Pods based on the traffic, this is missing in Docker.
@@ -43,3 +43,22 @@ Now before proceeding lets understand what is container, docker and how it diffe
       - So to summarise controller manager make sure that controller like replicaset are always UP.
     - __cloud controller manager (CCM)__: when kubernetes is running on cloud platform (EKS/AKS), so when user request to create a resource such as LB/storage service on cloud platform than kubernetes has to provide the input from user to cloud provider understandable format. 
       - Kubernetes provides CCM which is an open source utility where cloud providers which want to run kubernetes will write its logic. 
+
+**Difference between POD and container**:
+- POD is a wrapper created on top of container. POD can contain 1 or multiple container (called as sidecar).
+- The benefit of using multiple container in a POD is they will have shared networking and sidecar container will be able to access the main container directly.
+- cluster IP address is assigned at the POD level by Kubeproxy and not container level.
+
+
+- Deployment --> Replicaset --> POD (container, sidecar)
+
+
+
+Service:
+1. Load balancing: it balances the incoming request and decide to send it to correct POD
+2. Service discovery: when a new pod is UP it discovers that using the label and selectors (as new POD will have different IP) and redirect the traffic to that new POD.
+3. Expose to the outside world:Service can allow you to expose your application to the outside world, below is how it does.
+      Service Type
+        --> ClusterIP : Application can be accessed inside the cluster. only 1 and 2 are possible.
+        -->Node Port : Application can be accessed inside your org (intranet) whoever has access to your node.
+         --> Load balancing: applications can be accessed from the external world.
